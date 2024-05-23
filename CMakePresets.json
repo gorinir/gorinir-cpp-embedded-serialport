@@ -1,0 +1,227 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "cacheVariables": {
+                "PRESET_NAME": {
+                    "type": "STRING",
+                    "value": "${presetName}"
+                }
+            }
+        },
+        {
+            "name": "windows",
+            "hidden": true,
+            "cmakeExecutable": "cmake.exe"
+        },
+        {
+            "name": "linux",
+            "hidden": true,
+            "cmakeExecutable": "cmake"
+        },
+        {
+            "name": "ninja",
+            "hidden": true,
+            "generator": "Ninja"
+        },
+        {
+            "name": "msvc-16-x64-x64",
+            "hidden": true,
+            "toolset": {
+                "strategy": "external",
+                "value": "x64"
+            },
+            "architecture": {
+                "strategy": "external",
+                "value": "x64"
+            },
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "type": "FILEPATH",
+                    "value": "../common/msvc-16-x64-x64-toolchain.cmake"
+                }
+            }
+        },
+        {
+            "name": "gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "type": "FILEPATH",
+                    "value": "../common/gcc-toolchain.cmake"
+                },
+                "CONAN_COMPILER_LIBCXX": {
+                    "type": "STRING",
+                    "value": "libstdc++11"
+                }
+            }
+        },
+        {
+            "name": "gcc-arm",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "type": "FILEPATH",
+                    "value": "../common/gcc-arm-toolchain.cmake"
+                },
+                "CONAN_COMPILER_LIBCXX": {
+                    "type": "STRING",
+                    "value": "libstdc++11"
+                }
+            }
+        },
+        {
+            "name": "release",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Release"
+                }
+            }
+        },
+        {
+            "name": "debug",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                }
+            }
+        },
+        {
+            "name": "interface",
+            "hidden": true,
+            "cacheVariables": {
+                "INTERFACE_ONLY": {
+                    "type": "BOOL",
+                    "value": true
+                },
+                "BUILD_SHARED_LIBS": {
+                    "type": "BOOL",
+                    "value": false
+                }
+            }
+        },
+        {
+            "name": "static",
+            "hidden": true,
+            "cacheVariables": {
+                "BUILD_SHARED_LIBS": {
+                    "type": "BOOL",
+                    "value": false
+                }
+            }
+        },
+        {
+            "name": "shared",
+            "hidden": true,
+            "cacheVariables": {
+                "BUILD_SHARED_LIBS": {
+                    "type": "BOOL",
+                    "value": true
+                }
+            }
+        },
+        {
+            "name": "mt",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_MSVC_RUNTIME_LIBRARY": {
+                    "type": "STRING",
+                    "value": "MultiThreaded"
+                }
+            }
+        },
+        {
+            "name": "md",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_MSVC_RUNTIME_LIBRARY": {
+                    "type": "STRING",
+                    "value": "MultiThreadedDLL"
+                }
+            }
+        },
+        {
+            "name": "mtd",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_MSVC_RUNTIME_LIBRARY": {
+                    "type": "STRING",
+                    "value": "MultiThreadedDebug"
+                }
+            }
+        },
+        {
+            "name": "mdd",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_MSVC_RUNTIME_LIBRARY": {
+                    "type": "STRING",
+                    "value": "MultiThreadedDebugDLL"
+                }
+            }
+        },
+        {
+            "name": "windows.ninja.gcc-arm.debug.static",
+            "inherits": [
+                "default",
+                "windows",
+                "ninja",
+                "gcc-arm",
+                "debug",
+                "static"
+            ],
+            "binaryDir": "${sourceDir}/build/0"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "jobs": 4
+        },
+        {
+            "name": "windows.ninja.gcc-arm.debug.static",
+            "configurePreset": "windows.ninja.gcc-arm.debug.static",
+            "inherits": [
+                "default"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "output": {
+                "verbosity": "verbose",
+                "outputOnFailure": true
+            },
+            "filter": {
+                "exclude": {
+                    "name": "(ExcludedTests\\..+)|(ExcludedTests\\.test1)"
+                }
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true,
+                "timeout": 600
+            }
+        },
+        {
+            "name": "windows.ninja.gcc-arm.debug.static",
+            "configurePreset": "windows.ninja.gcc-arm.debug.static",
+            "inherits": [
+                "default"
+            ]
+        }
+    ]
+}

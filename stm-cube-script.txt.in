@@ -1,0 +1,5 @@
+swmgr install stm32cube_h7_1.11.2 ask
+config load @IOC_FILE@
+project path @CUBE_OUTPUT_DIR@
+project generate
+exit
