@@ -508,7 +508,7 @@ if("gcc-arm" IN_LIST PRESET_NAME_ELEMENTS)
     set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${LINKER_FLAGS_RELEASE}")
 
     add_library("${PROJECT_NAME}-hal"
-        "src/main/c/${BASE_DIR}/exqudens_embedded_serial.h"
+        "src/main/c/${BASE_DIR}/gorinir_embedded_serialport.h"
 
         "src/main/c/${BASE_DIR}/Core/Inc/main.h"
         "src/main/c/${BASE_DIR}/Core/Inc/stm32h7xx_hal_conf.h"

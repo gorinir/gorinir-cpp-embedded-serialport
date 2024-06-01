@@ -3,7 +3,7 @@
 - Uses board: NUCLEO-H7A3ZI-Q with MCU: STM32H7A3ZI
 - Requires: `cmake`, `ninja`, `STM32CubeMX`, `openocd`
 
-##### How To Generate
+##### How To Generate Vendor Developed Code
 
 ```
 cmake -DUSE_CUBE=ON --preset windows.ninja.gcc-arm.debug.static
