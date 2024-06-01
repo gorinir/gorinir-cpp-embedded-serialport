@@ -1,4 +1,6 @@
 # Directories
+__pycache__/
+.pytest_cache/
 .idea/
 .vs/
 .vscode/

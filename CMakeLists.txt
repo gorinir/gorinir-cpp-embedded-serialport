@@ -84,7 +84,8 @@ project("${NAME}" VERSION "${VERSION}" LANGUAGES "NONE")
 
 message(STATUS "project: '${PROJECT_NAME}-${PROJECT_VERSION}'")
 
-string(REPLACE "-cpp-" "-" BASE_DIR "${PROJECT_NAME}")
+string(REPLACE "_" "-" BASE_DIR "${PROJECT_NAME}")
+string(REPLACE "-cpp-" "-" BASE_DIR "${BASE_DIR}")
 string(REPLACE "-" "/" BASE_DIR "${BASE_DIR}")
 
 message(STATUS "BASE_DIR: '${BASE_DIR}'")
@@ -507,6 +508,8 @@ if("gcc-arm" IN_LIST PRESET_NAME_ELEMENTS)
     set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${LINKER_FLAGS_RELEASE}")
 
     add_library("${PROJECT_NAME}-hal"
+        "src/main/c/${BASE_DIR}/exqudens_embedded_serial.h"
+
         "src/main/c/${BASE_DIR}/Core/Inc/main.h"
         "src/main/c/${BASE_DIR}/Core/Inc/stm32h7xx_hal_conf.h"
         "src/main/c/${BASE_DIR}/Core/Src/main.c"
@@ -625,6 +628,7 @@ if("gcc-arm" IN_LIST PRESET_NAME_ELEMENTS)
         "src/main/c/${BASE_DIR}/USB_DEVICE/Target/usbd_conf.h"
     )
     target_include_directories("${PROJECT_NAME}-hal" PUBLIC
+        "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}>"
         "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/Core/Inc>"
         "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/Drivers/STM32H7xx_HAL_Driver/Inc>"
         "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy>"
@@ -634,7 +638,6 @@ if("gcc-arm" IN_LIST PRESET_NAME_ELEMENTS)
         "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc>"
         "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/USB_DEVICE/App>"
         "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/USB_DEVICE/Target>"
-        "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src/main/c/${BASE_DIR}/st-integration>"
         "$<INSTALL_INTERFACE:include>"
     )
     target_compile_definitions("${PROJECT_NAME}-hal" PUBLIC

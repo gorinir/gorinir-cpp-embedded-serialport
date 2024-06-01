@@ -69,10 +69,6 @@
                 "CMAKE_TOOLCHAIN_FILE": {
                     "type": "FILEPATH",
                     "value": "../common/gcc-arm-toolchain.cmake"
-                },
-                "CONAN_COMPILER_LIBCXX": {
-                    "type": "STRING",
-                    "value": "libstdc++11"
                 }
             }
         },
@@ -171,6 +167,140 @@
             }
         },
         {
+            "name": "windows.ninja.msvc-16-x64-x64.interface",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "windows",
+                "ninja",
+                "msvc-16-x64-x64",
+                "interface",
+                "mtd"
+            ],
+            "binaryDir": "${sourceDir}/build/0"
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.debug.shared",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "windows",
+                "ninja",
+                "msvc-16-x64-x64",
+                "debug",
+                "shared",
+                "mdd"
+            ],
+            "binaryDir": "${sourceDir}/build/1"
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.debug.static",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "windows",
+                "ninja",
+                "msvc-16-x64-x64",
+                "debug",
+                "static",
+                "mtd"
+            ],
+            "binaryDir": "${sourceDir}/build/2"
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.release.shared",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "windows",
+                "ninja",
+                "msvc-16-x64-x64",
+                "release",
+                "shared",
+                "md"
+            ],
+            "binaryDir": "${sourceDir}/build/3"
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.release.static",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "windows",
+                "ninja",
+                "msvc-16-x64-x64",
+                "release",
+                "static",
+                "mt"
+            ],
+            "binaryDir": "${sourceDir}/build/4"
+        },
+        {
+            "name": "linux.ninja.gcc.interface",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "linux",
+                "ninja",
+                "gcc",
+                "debug",
+                "shared"
+            ],
+            "binaryDir": "${sourceDir}/build/5"
+        },
+        {
+            "name": "linux.ninja.gcc.debug.shared",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "linux",
+                "ninja",
+                "gcc",
+                "debug",
+                "shared"
+            ],
+            "binaryDir": "${sourceDir}/build/6"
+        },
+        {
+            "name": "linux.ninja.gcc.debug.static",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "linux",
+                "ninja",
+                "gcc",
+                "debug",
+                "static"
+            ],
+            "binaryDir": "${sourceDir}/build/7"
+        },
+        {
+            "name": "linux.ninja.gcc.release.shared",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "linux",
+                "ninja",
+                "gcc",
+                "release",
+                "shared"
+            ],
+            "binaryDir": "${sourceDir}/build/8"
+        },
+        {
+            "name": "linux.ninja.gcc.release.static",
+            "hidden": true,
+            "inherits": [
+                "default",
+                "linux",
+                "ninja",
+                "gcc",
+                "release",
+                "static"
+            ],
+            "binaryDir": "${sourceDir}/build/9"
+        },
+        {
             "name": "windows.ninja.gcc-arm.debug.static",
             "inherits": [
                 "default",
@@ -180,7 +310,7 @@
                 "debug",
                 "static"
             ],
-            "binaryDir": "${sourceDir}/build/0"
+            "binaryDir": "${sourceDir}/build/10"
         }
     ],
     "buildPresets": [
@@ -188,6 +318,76 @@
             "name": "default",
             "hidden": true,
             "jobs": 4
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.interface",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.interface",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.debug.shared",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.debug.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.debug.static",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.debug.static",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.release.shared",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.release.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.release.static",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.release.static",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.interface",
+            "configurePreset": "linux.ninja.gcc.interface",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.debug.shared",
+            "configurePreset": "linux.ninja.gcc.debug.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.debug.static",
+            "configurePreset": "linux.ninja.gcc.debug.static",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.release.shared",
+            "configurePreset": "linux.ninja.gcc.release.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.release.static",
+            "configurePreset": "linux.ninja.gcc.release.static",
+            "inherits": [
+                "default"
+            ]
         },
         {
             "name": "windows.ninja.gcc-arm.debug.static",
@@ -207,14 +407,84 @@
             },
             "filter": {
                 "exclude": {
-                    "name": "(ExcludedTests\\..+)|(ExcludedTests\\.test1)"
+                    "name": "(UiTestsA.test1)|(UiTestsB.test1)|(UiTestsC.test1)|(UiTestsD.test1)|(UiTestsE.test1)"
                 }
             },
             "execution": {
                 "noTestsAction": "error",
                 "stopOnFailure": true,
-                "timeout": 600
+                "timeout": 120
             }
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.interface",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.interface",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.debug.shared",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.debug.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.debug.static",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.debug.static",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.release.shared",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.release.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "windows.ninja.msvc-16-x64-x64.release.static",
+            "configurePreset": "windows.ninja.msvc-16-x64-x64.release.static",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.interface",
+            "configurePreset": "linux.ninja.gcc.interface",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.debug.shared",
+            "configurePreset": "linux.ninja.gcc.debug.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.debug.static",
+            "configurePreset": "linux.ninja.gcc.debug.static",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.release.shared",
+            "configurePreset": "linux.ninja.gcc.release.shared",
+            "inherits": [
+                "default"
+            ]
+        },
+        {
+            "name": "linux.ninja.gcc.release.static",
+            "configurePreset": "linux.ninja.gcc.release.static",
+            "inherits": [
+                "default"
+            ]
         },
         {
             "name": "windows.ninja.gcc-arm.debug.static",
